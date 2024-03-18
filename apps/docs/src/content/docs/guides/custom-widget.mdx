@@ -1,0 +1,57 @@
+---
+title: Creating a Custom ConvoComet Widget
+description: Use the ConvoComet SDK to integrate commenting into a custom interface
+---
+
+## Installation
+
+The recommended way to use ConvoComet is through the [official integrations](/guides/getting-started). However, there are certain cases where you might want customization that is not available in the premade widget. Luckily, ConvoComet publishes a JavaScript SDK `@convocomet/sdk` that makes it simple to access the ConvoComet API. To use this, first install it with NPM (or your preferred packages manager):
+
+```sh
+npm install @convocomet/sdk
+```
+
+`@convocomet/sdk` exports only three functions. `loadComments`, `postComment`, and `upvote`. These all do exactly what it sounds like :{"("}.
+
+## loadComments
+
+`loadComments` helps load a list of comments. To call it, pass a config object containing your site id as `id` and page id as `page`. You can also pass in an optional order and continuation parameter (the continuation parameter should only be used when returned by the API for use with pagination).
+
+Here is an example of using `loadComments`
+
+```js
+import {loadComments} from "@convocomet/sdk"
+const {comments, continuation} = await loadComments({
+    id: import.meta.env.CONVOCOMET_SITE_ID,
+    page: 'page-slug'
+}, 'newest')
+```
+
+Note that `continuation` will only be returned when there are more comments. There is currently no way to configure the number of comments loaded (it is set to 20).
+
+## postComment
+
+`postComment` allows you to submit comments. To use it, pass two parameters: the comment data and configuration object. The comment data should contain `text`, a boolean `notifications` for whether the user has enabled notifications, `author`, which should only be specified for anonymous users (signed in users will use the session cookie), and `sourceId`, which is the id of the comment replied to if the comment is a reply.
+
+```js
+import {postComment} from "@convocomet/sdk"
+const newComment = await postComment({
+    text: "Testing testing 1 2",
+    notifications: false, // cannot be true without signed in user
+    author: "Tester"
+},{
+    id: import.meta.env.CONVOCOMET_SITE_ID,
+    page: 'page-slug'
+})
+```
+
+## upvote
+
+`upvote` allows you to upvote comments. To use it, simply pass in a comment id and configuration object.
+
+```js
+await upvote(COMMENT_ID, {
+    id: import.meta.env.CONVOCOMET_SITE_ID,
+    page: 'page-slug'
+})
+```

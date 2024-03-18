@@ -1,0 +1,33 @@
+---
+import DashboardLayout from './DashboardLayout.astro';
+import type { SiteTableSelect } from '../schemas/db/site';
+import Button from '../components/Button.svelte';
+interface Props {
+	Site: SiteTableSelect;
+	Page: 'home' | 'settings';
+}
+const { Site, Page } = Astro.props;
+---
+
+<DashboardLayout class="w-main m-auto">
+	<h1 class="text-3xl font-bold font-display">{Site.name}</h1>
+	<div class="flex flex-row gap-2 mb-6">
+		<Button
+			href={`/dashboard/sites/${Site.id}`}
+			icon="i-icon-park-outline:home"
+			type="tertiary"
+			disabled={Page === 'home'}
+		>
+			Home
+		</Button>
+		<Button
+			href={`/dashboard/sites/${Site.id}/settings`}
+			icon="i-material-symbols:settings-outline-rounded"
+			type="tertiary"
+			disabled={Page === 'settings'}
+		>
+			Settings
+		</Button>
+	</div>
+	<slot />
+</DashboardLayout>

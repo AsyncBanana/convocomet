@@ -1,0 +1,27 @@
+---
+import SettingsPage from '../../../../components/dashboard/sites/site/Settings.svelte';
+import SiteLayout from '../../../../layouts/SiteLayout.astro';
+import { SiteTable } from '../../../../schemas/db/site';
+import { eq } from 'drizzle-orm';
+const { db, getSession } = Astro.locals;
+const { site: id } = Astro.params;
+let userData = await getSession();
+if (!userData) {
+	return Astro.redirect('/signin', 302);
+}
+const siteConfig = (await db.select().from(SiteTable).where(eq(SiteTable.id, +id)).all())[0];
+if (!siteConfig) {
+	return new Response('Site not found', {
+		status: 404
+	});
+}
+if (siteConfig.owner !== userData.id) {
+	return new Response('Not owner of site', {
+		status: 401
+	});
+}
+---
+
+<SiteLayout Site={siteConfig} Page="settings">
+	<SettingsPage Site={siteConfig} client:load />
+</SiteLayout>

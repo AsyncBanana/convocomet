@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"rootDirs": ["./"],
+		"verbatimModuleSyntax": true,
+		"isolatedModules": true,
+		"lib": ["esnext", "DOM", "DOM.Iterable"],
+		"moduleResolution": "node",
+		"module": "esnext",
+		"target": "esnext",
+		"declaration": true,
+		"outDir": "dist",
+		"jsx": "react-jsx"
+	},
+	"include": ["./src/**/*.jsx", "./src/**/*.tsx"]
+}

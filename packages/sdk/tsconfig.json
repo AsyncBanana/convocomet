@@ -1,0 +1,13 @@
+{
+	"include": ["src/**/*"],
+	"compilerOptions": {
+		"declaration": true,
+		"isolatedModules": true,
+		"outDir": "./dist",
+		"module": "ESNext",
+		"lib": ["ESNext", "DOM"],
+		"target": "ESNext",
+		"moduleResolution": "node"
+	},
+	"synchronousWatchDirectory": true
+}

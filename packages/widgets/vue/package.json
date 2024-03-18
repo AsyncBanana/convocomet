@@ -1,0 +1,28 @@
+{
+	"name": "@convocomet/vue",
+	"version": "1.0.0",
+	"description": "ConvoComet Vue Widget",
+	"keywords": [
+		"commenting",
+		"vue"
+	],
+	"author": "Jacob Jackson (asyncbanana.dev)",
+	"license": "MIT",
+	"scripts": {
+		"build": "vue-tsc && node ./build.js"
+	},
+	"devDependencies": {
+		"esbuild": "^0.20.2",
+		"esbuild-plugin-vue3": "^0.4.2",
+		"typescript": "^5.4.2",
+		"vue": "^3.4.21",
+		"vue-tsc": "^2.0.6"
+	},
+	"peerDependencies": {
+		"vue": "3.x"
+	},
+	"main": "dist/index.js",
+	"types": "dist/index.vue.d.ts",
+	"type": "module",
+	"packageManager": "pnpm@8.15.4"
+}

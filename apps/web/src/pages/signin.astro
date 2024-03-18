@@ -1,0 +1,16 @@
+---
+import SignInComponent from '../components/Signin.svelte';
+import BaseLayout from '../layouts/BaseLayout.astro';
+const { getSession } = Astro.locals;
+const redirect = Astro.url.searchParams.get('redirect');
+if (await getSession()) {
+	return Astro.redirect(redirect || '/dashboard', 302);
+}
+export const prerender = false;
+---
+
+<BaseLayout>
+	<div class="w-main-small">
+		<SignInComponent {redirect} client:load />
+	</div>
+</BaseLayout>

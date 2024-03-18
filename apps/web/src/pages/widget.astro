@@ -1,0 +1,66 @@
+---
+import Index from '../components/widget/Index.svelte';
+import WidgetLayout from '../layouts/WidgetLayout.astro';
+import { SiteTable, type SiteTableSelect } from '../schemas/db/site';
+import { type UserTableSelect } from '../schemas/db/auth';
+import { eq } from 'drizzle-orm';
+import Modal from '../components/Modal.svelte';
+import Button from '../components/Button.svelte';
+const { db } = Astro.locals;
+const siteId = Astro.url.searchParams.get('site');
+const theme = (Astro.url.searchParams.get('theme') || 'light') as 'light' | 'dark' | 'auto';
+let user: UserTableSelect;
+let siteConfig: SiteTableSelect;
+if (theme && theme !== 'light' && theme !== 'dark' && theme !== 'auto') {
+	return new Response('Theme invalid', {
+		status: 400
+	});
+}
+if (siteId) {
+	if (isNaN(+siteId)) {
+		return new Response('Site id invalid', {
+			status: 400
+		});
+	}
+	({
+		user,
+		data: [[siteConfig]]
+	} = await Astro.locals.getBatchSession([
+		db.select().from(SiteTable).where(eq(SiteTable.id, +siteId))
+	]));
+} else {
+	return new Response('Site id not passed', {
+		status: 400
+	});
+}
+if (!siteConfig) {
+	return new Response('Site id invalid', {
+		status: 400
+	});
+}
+---
+
+<WidgetLayout {theme}>
+	<Index client:only session={user} {siteConfig} />
+</WidgetLayout>
+<Modal id="deletionDialog">
+	<svelte:fragment slot="header">Confirm deletion</svelte:fragment>
+	Are you sure you want to delete this? This action is irreversible.<Button
+		type="primary"
+		class="bg-red-500 hover:bg-red-700"
+		slot="action"
+		value="delete"
+		action="submit"
+	>
+		Delete
+	</Button><Button type="tertiary" slot="action">Cancel</Button>
+</Modal>
+<script>
+	const dialog = document.getElementById('deletionDialog') as HTMLDialogElement;
+	dialog.addEventListener('close', async () => {
+		if (dialog.returnValue !== 'delete') return;
+		await fetch(`/api/comment/${dialog.getAttribute('data-comment')}`, {
+			method: 'DELETE'
+		});
+	});
+</script>

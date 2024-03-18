@@ -1,0 +1,23 @@
+---
+const { getSession } = Astro.locals;
+const user = await getSession();
+if (!user) {
+	return new Response('Not signed in; Redirecting...', {
+		status: 302,
+		headers: {
+			Location: '/'
+		}
+	});
+}
+---
+
+<script is:inline data-user={JSON.stringify(user)}>
+	window.opener.postMessage({
+		type: 'signInCallback',
+		user: JSON.parse(document.currentScript.getAttribute('data-user'))
+	});
+	window.close();
+</script>
+<h1 style="font-family: sans-serif; font-size: 3rem; text-align: center; font-weight: 700">
+	You can close this tab now; Successfully signed in
+</h1>

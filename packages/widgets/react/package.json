@@ -1,0 +1,27 @@
+{
+	"name": "@convocomet/react",
+	"version": "1.0.0",
+	"description": "ConvoComet React/Preact Widget",
+	"keywords": [
+		"commenting",
+		"react",
+		"preact"
+	],
+	"author": "Jacob Jackson (asyncbanana.dev)",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "tsc ",
+		"dev": "node ./watch.js"
+	},
+	"devDependencies": {
+		"@types/react": "^18.2.67",
+		"typescript": "^5.4.2"
+	},
+	"peerDependencies": {
+		"react": "18.x"
+	},
+	"type": "module",
+	"types": "dist/index.d.ts",
+	"packageManager": "pnpm@8.15.4"
+}

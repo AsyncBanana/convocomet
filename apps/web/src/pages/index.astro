@@ -1,0 +1,105 @@
+---
+import Button from '../components/Button.svelte';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+	<div class="bg-base-3 mb-12">
+		<div class="md:grid grid-cols-3 w-main">
+			<div>
+				<h1 class="font-display font-700 mt-1/6 text-5xl">
+					<span
+						class="bg-gradient-to-r bg-clip-text gradient-primary-dark text-primary-dark"
+						style="-webkit-text-fill-color: transparent;">Open Source & Privacy Friendly</span
+					> Disqus Alternative
+				</h1>
+				<span class="text-neutral-4 font-semibold font-display"
+					>Stop compromising on your user's privacy and your website's performance.</span
+				>
+				<Button class="mb-3 mt-6">Try it out</Button>
+				<Button type="secondary">Documentation</Button>
+			</div>
+			<picture class="m-6 rounded-lg col-span-2 object-contain">
+				<source
+					srcset="/images/demo-dark.webp"
+					media="(prefers-color-scheme: dark)"
+					class="rounded-lg"
+					type="image/webp"
+				/>
+				<source
+					srcset="/images/demo-dark.png"
+					media="(prefers-color-scheme: dark)"
+					class="rounded-lg"
+				/>
+				<source srcset="/images/demo.webp" class="rounded-lg" type="image/webp" />
+				<img src="/images/demo.png" class="rounded-lg" alt="" width="1230" height="589" />
+			</picture>
+		</div>
+	</div>
+	<div class="w-main-small m-auto prose">
+		<h2 class="text-3xl font-semibold font-display">No more giving your user's data away</h2>
+		<p>
+			With many commenting widgets, you give your user's data to the service provider for free. With
+			ConvoComet, only the bare minimum amount of data is taken, and no data is or will ever be sold
+		</p>
+		<p>
+			In fact, if you choose to enable it, you can allow users to comment entirely anonymously
+			reducing friction and making users more comfortable commenting
+		</p>
+	</div>
+	<div class="w-main-small m-auto prose mt-6">
+		<h2 class="text-3xl font-semibold font-display">
+			Improve your user experience and SEO with lighter pages
+		</h2>
+		<div class="p-6 bg-base-3 rounded-md">
+			<h3 class="text-center text-lg font-medium font-display">Size of widget</h3>
+			<div class="flex">
+				<div class="flex flex-col gap-3">
+					<div class="px-3">ConvoComet</div>
+					<div class="px-3">Disqus</div>
+				</div>
+				<div class="flex flex-col grow gap-3">
+					<div class="flex flex-row gap-3">
+						<div
+							class="w-[12.8%] bg-gradient-to-r b-1 border-neutral-2 gradient-primary-dark h-9 rounded-md"
+						>
+						</div><span class="text-right grow text-green-400 font-bold font-display px-3"
+							>148 KB</span
+						>
+					</div>
+					<div class="flex flex-row flex-nowrap">
+						<div class="w-full bg-base-2 b-1 border-neutral-2 h-9 rounded-md"></div><span
+							class="text-right grow text-neutral-3 whitespace-nowrap px-3">1.9 MB</span
+						>
+					</div>
+				</div>
+			</div>
+			<div class="mt-3 text-neutral-4 text-sm">Including HTML, CSS, and JS; Uncompressed</div>
+		</div>
+		<p>
+			ConvoComet is extremely small and fast, meaning your website will show up higher on page
+			results, and your users will be less likely to leave before the page loads
+		</p>
+		<p>
+			ConvoComet is also hosted on an ultra fast edge network, meaning your users will get fast page
+			loads no matter where they are
+		</p>
+		<p>
+			Additionally, as we implement more optimization strategies, the widget will only get faster
+		</p>
+	</div>
+	<div class="w-main-small m-auto prose mt-6">
+		<h2 class="text-3xl font-semibold font-display">Set up comments in 5 minutes</h2>
+		<p>
+			Setting up ConvoComet Cloud is as simple as creating a new site and pasting the code it gives
+			you into your website. There are a growing number of integrations for frameworks and site
+			builders to make things even easier.
+		</p>
+	</div>
+	<div class="w-main-small flex gap-3">
+		<Button href="/dashboard">Get started</Button><Button
+			type="secondary"
+			href="https://docs.convocomet.dev">Check the docs</Button
+		>
+	</div>
+</BaseLayout>

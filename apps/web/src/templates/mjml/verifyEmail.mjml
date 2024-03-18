@@ -1,0 +1,56 @@
+<mjml>
+	<mj-head>
+		<mj-title>Verify your email to sign in & comment</mj-title>
+		<mj-font
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap"
+			name="Inter"
+		></mj-font>
+	</mj-head>
+	<mj-body>
+		<mj-section padding-bottom="0px">
+			<mj-column width="100px" padding="0px" vertical-align="middle">
+				<mj-image width="75px" padding="0px" src="https://convocomet.dev/logo.png"></mj-image>
+			</mj-column>
+			<mj-column padding="0px" vertical-align="middle">
+				<mj-text font-size="30px" font-weight="700" align="center" padding="0px" font-family="Inter"
+					>ConvoComet</mj-text
+				>
+			</mj-column>
+		</mj-section>
+		<mj-section>
+			<mj-column>
+				<mj-divider border-color="#019fcb"></mj-divider>
+
+				<mj-text font-size="20px" font-family="helvetica"
+					>A new sign in request has been made for this email. If this was you, click verify below.
+					Otherwise, you can safely ignore this email</mj-text
+				>
+			</mj-column>
+		</mj-section>
+		<mj-section>
+			<mj-column>
+				<mj-button
+					href="{{verifyUrl}}"
+					target="_blank"
+					font-weight="800"
+					font-family="Inter"
+					font-size="20px"
+					>Verify email</mj-button
+				>
+			</mj-column>
+		</mj-section>
+		<mj-section>
+			<mj-column>
+				<mj-image
+					width="25px"
+					padding-bottom="0px"
+					src="https://convocomet.dev/logo.png"
+					align="left"
+				></mj-image>
+				<mj-text font-size="12px" font-family="helvetica" padding-bottom="0px"
+					>Powered by ConvoComet</mj-text
+				>
+			</mj-column>
+		</mj-section>
+	</mj-body>
+</mjml>

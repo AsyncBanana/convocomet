@@ -1,0 +1,63 @@
+---
+import Button from '../components/Button.svelte';
+import Card from '../components/Card.svelte';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Details from '../components/Details.svelte';
+---
+
+<BaseLayout SEO={{ title: 'ConvoComet Pricing' }} class="w-main m-auto">
+	<h1 class="text-3xl font-bold font-display text-center my-6">
+		Simple, traffic based pricing for all websites and businesses
+	</h1>
+	<div class="grid md:grid-cols-2 gap-6 max-w-3xl m-auto mb-3">
+		<Card header="Hobby" static>
+			<div class="text-[10rem] font-bold font-display text-center text-primary-medium">$0</div>
+			<div class="text-center font-medium text-neutral-4">Billed monthly</div>
+			<div class="text-center font-medium text-lg">Up to 5k monthly comment page loads</div>
+			<ul class="p-3 text-lg w-max m-auto">
+				<li>Includes all features:</li>
+				<li>No ads or tracking</li>
+				<li>Infinite websites</li>
+				<li>Spam protection</li>
+				<li>Sign in with email or OAuth</li>
+				<li>Analytics</li>
+				<li>Email notifications</li>
+			</ul>
+			<Button size="full" href="/dashboard/settings">Get started with hobby</Button>
+		</Card>
+		<Card header="Pro" static>
+			<div class="text-[10rem] font-bold font-display text-center text-primary-medium">$9</div>
+			<div class="text-center font-medium text-neutral-4">Billed monthly</div>
+			<div class="text-center font-medium text-lg">Up to 500k monthly comment page loads</div>
+			<ul class="p-3 text-lg w-max m-auto">
+				<li>Includes all features:</li>
+				<li>No ads or tracking</li>
+				<li>Infinite websites</li>
+				<li>Spam protection</li>
+				<li>Sign in with email or OAuth</li>
+				<li>Analytics</li>
+				<li>Email notifications</li>
+			</ul>
+			<Button size="full" href="/api/payment/prosignup">Get started with pro</Button>
+		</Card>
+	</div>
+	<Details summary="What is your refund policy?">
+		All subscription purchases are entirely nonrefundable
+	</Details>
+	<Details summary="How can you cancel a plan?">
+		Go to <a href="/dashboard/settings">User settings</a> to cancel your plan.
+	</Details>
+	<Details summary="How are limits enforced?">
+		If you go over the limit, an email will be sent to you requesting you to upgrade, and if you do
+		not, your service will be shut down.
+	</Details>
+</BaseLayout>
+
+<style>
+	li {
+		@apply px-3 leading-loose;
+	}
+	li::marker {
+		content: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 22 16"><path fill="hsl(193, 99%, 50%)" d="M9 16.17L5.53 12.7a.996.996 0 1 0-1.41 1.41l4.18 4.18c.39.39 1.02.39 1.41 0L20.29 7.71a.996.996 0 1 0-1.41-1.41L9 16.17z"/></svg>');
+	}
+</style>

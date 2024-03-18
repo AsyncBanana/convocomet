@@ -1,0 +1,62 @@
+---
+import SitePage from '../../../../components/dashboard/sites/Site.svelte';
+import SiteLayout from '../../../../layouts/SiteLayout.astro';
+import { SiteTable, type SiteTableSelect } from '../../../../schemas/db/site';
+import CreateDialog from '../../../../components/CreateDialog.svelte';
+import 'uplot/dist/uPlot.min.css';
+import { eq } from 'drizzle-orm';
+import { QueueTable, type QueueTableSelect } from '../../../../schemas/db/comment';
+import { Interval, getEventCount } from '../../../../modules/analytics';
+const { site: id } = Astro.params;
+const { db, getSession } = Astro.locals;
+let userData = await getSession();
+if (!userData) {
+	return Astro.redirect('/signin', 302);
+}
+const res = await Promise.allSettled([
+	(async () => {
+		const siteConfig = (await db.select().from(SiteTable).where(eq(SiteTable.id, +id)).all())[0];
+		let queuedComments;
+		if (!siteConfig) {
+			return new Response('Site not found', {
+				status: 404
+			});
+		}
+		if (siteConfig.manualModeration) {
+			queuedComments = await db
+				.select()
+				.from(QueueTable)
+				.where(eq(QueueTable.siteId, +id))
+				.limit(30)
+				.all();
+		}
+		return [siteConfig, queuedComments] as [SiteTableSelect, QueueTableSelect];
+	})(),
+	getEventCount('view', +id, {
+		interval: Interval.Day
+	}),
+	getEventCount('comment', +id)
+]);
+if (res[0].status === 'rejected' || res[1].status === 'rejected' || res[2].status === 'rejected') {
+	return new Response('Error accessing site data', { status: 500 });
+}
+if (res[0].value instanceof Response) return res[0].value;
+const [
+	{
+		value: [siteConfig, queuedComments]
+	},
+	{ value: views },
+	{ value: comments }
+] = res;
+---
+
+<SiteLayout Site={siteConfig} Page="home">
+	<SitePage
+		ViewEvents={views}
+		CommentEvents={comments}
+		Site={siteConfig}
+		Comments={queuedComments}
+		client:load
+	/>
+	{Astro.url.searchParams.has('new') ? <CreateDialog site={siteConfig} client:load /> : ''}
+</SiteLayout>

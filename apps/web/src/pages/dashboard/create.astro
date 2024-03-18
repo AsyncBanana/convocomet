@@ -1,0 +1,13 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import CreateSite from '../../components/dashboard/Create.svelte';
+const { getSession } = Astro.locals;
+let userData = await getSession();
+if (!userData) {
+	return Astro.redirect(`/signin?redirect=${encodeURIComponent('/dashboard/create')}`, 302);
+}
+---
+
+<DashboardLayout>
+	<CreateSite client:load />
+</DashboardLayout>

@@ -1,0 +1,34 @@
+{
+	"name": "@convocomet/svelte",
+	"version": "1.0.0",
+	"description": "ConvoComet Svelte Widget",
+	"keywords": [
+		"commenting",
+		"svelte"
+	],
+	"author": "Jacob Jackson (asyncbanana.dev)",
+	"license": "MIT",
+	"main": "dist/index.svelte",
+	"scripts": {
+		"build": "node ./compile.js"
+	},
+	"devDependencies": {
+		"fast-glob": "^3.3.2",
+		"svelte": "^4.2.12",
+		"svelte-preprocess": "^5.1.3",
+		"svelte2tsx": "^0.7.4",
+		"typescript": "^5.4.2"
+	},
+	"peerDependencies": {
+		"svelte": "4.x"
+	},
+	"exports": {
+		"svelte": "./dist/index.svelte",
+		"types": "./dist/index.svelte.d.ts"
+	},
+	"files": [
+		"dist"
+	],
+	"type": "module",
+	"packageManager": "pnpm@8.15.4"
+}

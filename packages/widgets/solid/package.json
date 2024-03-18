@@ -1,0 +1,28 @@
+{
+	"name": "@convocomet/solid",
+	"version": "1.0.0",
+	"description": "ConvoComet Solid Widget",
+	"keywords": [
+		"commenting",
+		"solid"
+	],
+	"author": "Jacob Jackson (asyncbanana.dev)",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "tsc && babel src --out-dir dist --extensions \".tsx\""
+	},
+	"devDependencies": {
+		"@babel/cli": "^7.23.9",
+		"@babel/core": "^7.24.0",
+		"@babel/preset-typescript": "^7.23.3",
+		"babel-preset-solid": "^1.8.15",
+		"solid-js": "^1.8.15"
+	},
+	"peerDependencies": {
+		"solid-js": "1.x"
+	},
+	"type": "module",
+	"packageManager": "pnpm@8.15.4"
+}

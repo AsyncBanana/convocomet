@@ -1,0 +1,62 @@
+---
+import { CommentTable } from '../../../schemas/db/comment';
+import { eq } from 'drizzle-orm';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+const { db } = Astro.locals;
+const url = new URL(Astro.request.url);
+const email = url.searchParams.get('email');
+const comment = +url.searchParams.get('comment');
+if (!email || !comment) {
+	return new Response('Email or comment not specified', {
+		status: 400
+	});
+}
+if (isNaN(comment)) {
+	return new Response('Invalid comment id', {
+		status: 400
+	});
+}
+try {
+	const res = await db
+		.select({
+			email: CommentTable.email
+		})
+		.from(CommentTable)
+		.where(eq(CommentTable.id, comment))
+		.get();
+	if (!res) {
+		return new Response('Invalid comment id', {
+			status: 400
+		});
+	}
+	if (!('email' in res)) {
+		return new Response('No email specified in comment', {
+			status: 400
+		});
+	}
+	if (email !== res.email) {
+		return new Response('Invalid email', {
+			status: 400
+		});
+	}
+	await db.update(CommentTable).set({ notifications: false }).run();
+} catch (err) {
+	console.log(err);
+	return new Response('Error querying database', {
+		status: 500
+	});
+}
+---
+
+<BaseLayout Nav={false}>
+	<div class="w-main">
+		<div class="flex flex-row items-center m-auto gap-3 justify-center mb-6">
+			<div class="i-custom:logo dark:i-custom:logo-dark col-span-2 w-12 h-12"></div>
+			<h1 class="text-3xl font-bold font-display">ConvoComet</h1>
+		</div>
+		<h1 class="text-center font-display text-3xl font-bold">Unsubscribe Successful</h1>
+		<p class="text-lg md:text-center">
+			You will not receive any more email notifications from replies to this comment
+		</p>
+	</div>
+</BaseLayout>

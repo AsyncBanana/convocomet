@@ -1,0 +1,124 @@
+---
+title: Getting Started with ConvoComet
+description: How to integrate ConvoComet into your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+This guide will show you how to integrate the ConvoComet widget into your website.
+
+First, make sure you have [created a ConvoComet site](https://convocomet.dev/dashboard/create). If you are planning on self-hosting, check out [this guide](/guides/self-host).
+
+Once you have created the site, you should be redirected to a page showing the site id. You can also copy the id from the address bar, as the site page URL should look something like `convocomet.dev/dashboard/sites/[site_id]`.
+
+## Adding the widget to your website
+
+Follow the guide for your framework, or HTML if none match what you want.
+
+<Tabs>
+	<TabItem label="HTML">
+	If you are using plain HTML or a currently unsupported framework, follow this guide.
+
+    Paste this HTML snippet into either each page you want the comment widget to be loaded in, or a layout component shared across all of those pages.
+
+    You should paste this in the location of the page you want the comment to be on.
+
+    ```html
+
+<div
+	id="convocomet-widget"
+	data-page="YOUR_PAGE_ID"
+	data-site="YOUR_SITE_ID"
+	data-theme="YOUR_THEME"
+></div>
+<script src="https://convocomet.dev/widget.js" async></script>
+```
+
+Fill in the site ID with the ID from the URL above, and fill in the page ID with whatever ID you want to use. ConvoComet uses the page ID to separate comments; just make sure that different comment threads have different page IDs. However, if you are unsure what to use, the page slug is generally a good option.
+
+You can also optionally set a theme using `data-theme`. The allowed values are `"light"`, `"dark"`, and `"auto"`. The default is `light`, and if your website is light theme only, keep it at that. However, you can also set your theme to `"dark"` if your website uses a dark theme, or `"auto"` if your website theme changes based on the user's preferred color scheme.
+
+</TabItem>
+<TabItem label="React">
+If you are using React, Preact, or another React-compatible toolbar, follow this guide.
+
+    First, you will want to install @convocomet/react.
+
+```sh
+npm install @convocomet/react
+```
+
+    Now, import @convocomet/react in a layout or page file.
+
+```js
+import ConvoComet from '@convocome/react';
+```
+
+Finally, add the component where you want the widget to be.
+
+```js
+// article above
+<ConvoComet page="YOUR_PAGE_ID" site="YOUR_SITE_ID" theme="YOUR_THEME" />
+```
+
+Fill in the site ID with the ID from the URL above, and fill in the page ID with whatever ID you want to use. ConvoComet uses the page ID to separate comments; just make sure that different comment threads have different page IDs. However, if you are unsure what to use, the page slug is generally a good option.
+
+You can also optionally set a theme using `theme`. The allowed values are `"light"`, `"dark"`, and `"auto"`. The default is `light`, and if your website is light theme only, keep it at that. However, you can also set your theme to `"dark"` if your website uses a dark theme, or `"auto"` if your website theme changes based on the user's preferred color scheme.
+
+</TabItem>
+<TabItem label="Svelte">
+If you are using Svelte, follow this guide.
+
+    First, you will want to install @convocomet/svelte.
+
+```sh
+npm install @convocomet/svelte
+```
+
+    Now, import @convocomet/svelte in a layout or page file.
+
+```js
+import ConvoComet from '@convocome/svelte';
+```
+
+Finally, add the component where you want the widget to be.
+
+```js
+// article above
+<ConvoComet page="YOUR_PAGE_ID" site="YOUR_SITE_ID" theme="YOUR_THEME" />
+```
+
+Fill in the site ID with the ID from the URL above, and fill in the page ID with whatever ID you want to use. ConvoComet uses the page ID to separate comments; just make sure that different comment threads have different page IDs. However, if you are unsure what to use, the page slug is generally a good option.
+
+You can also optionally set a theme using `theme`. The allowed values are `"light"`, `"dark"`, and `"auto"`. The default is `light`. If your website is light theme only, keep it at that. However, you can also set your theme to `"dark"` if your website uses a dark theme or `"auto"` if your website theme changes based on the user's preferred color scheme.
+
+</TabItem>
+<TabItem label="Vue">
+If you are using Vue, follow this guide.
+
+    First, you will want to install @convocomet/vue.
+
+```sh
+npm install @convocomet/vue
+```
+
+    Now, import @convocomet/vue in a layout or page file.
+
+```js
+import ConvoComet from '@convocome/vue';
+```
+
+Finally, add the component where you want the widget to be.
+
+```js
+// article above
+<ConvoComet page="YOUR_PAGE_ID" site="YOUR_SITE_ID" theme="YOUR_THEME" />
+```
+
+Fill in the site ID with the ID from the URL above, and fill in the page ID with whatever ID you want to use. ConvoComet uses the page ID to separate comments; just make sure that different comment threads have different page IDs. However, if you are unsure what to use, the page slug is generally a good option.
+
+You can also optionally set a theme using `theme`. The allowed values are `"light"`, `"dark"`, and `"auto"`. The default is `light`, and if your website is light theme only, keep it at that. However, you can also set your theme to `"dark"` if your website uses a dark theme, or `"auto"` if your website theme changes based on the user's preferred color scheme.
+
+</TabItem>
+
+</Tabs>

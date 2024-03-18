@@ -1,0 +1,59 @@
+---
+import BaseLayout from './BaseLayout.astro';
+interface Props {
+	theme?: 'light' | 'dark' | 'auto';
+}
+---
+
+<BaseLayout
+	Nav={false}
+	SEO={{ title: 'View and post comments - Powered by ConvoComet' }}
+	outerClass={`${Astro.props.theme === 'light' ? ' lightOverride' : ''}${
+		Astro.props.theme === 'dark' ? ' darkOverride' : ''
+	}`}
+>
+	<slot />
+</BaseLayout>
+<script>
+	document.addEventListener('DOMContentLoaded', () => {
+		const viewer = document.body;
+		if (window.parent) {
+			new ResizeObserver((entries) => {
+				window.parent.postMessage(
+					{
+						type: 'resize',
+						height: viewer.scrollHeight
+					},
+					'*'
+				);
+			}).observe(viewer);
+		}
+		window.parent.postMessage(
+			{
+				type: 'resize',
+				height: viewer.scrollHeight
+			},
+			'*'
+		);
+		window.addEventListener(
+			'message',
+			(e) => {
+				if (e.data.type === 'resizerInit') {
+					window.parent.postMessage(
+						{
+							type: 'resize',
+							height: viewer.scrollHeight
+						},
+						'*'
+					);
+				}
+			},
+			{ once: true }
+		);
+	});
+</script>
+<style is:global>
+	body {
+		background: none transparent !important;
+	}
+</style>

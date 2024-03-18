@@ -1,0 +1,24 @@
+html body {
+	@apply bg-base-2 text-content-base;
+}
+:root {
+	color-scheme: light dark;
+}
+:root.lightOverride {
+	color-scheme: light;
+}
+:root.darkOverride {
+	color-scheme: dark;
+}
+.prose {
+	@apply text-lg leading-loose;
+}
+.prose p {
+	@apply my-3;
+}
+.prose strong {
+	@apply font-bold;
+}
+.prose a {
+	@apply text-blue-500 font-semibold underline;
+}

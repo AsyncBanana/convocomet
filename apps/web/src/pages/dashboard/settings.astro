@@ -1,0 +1,24 @@
+---
+import Billing from '../../components/Billing.svelte';
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import { getSubscription, type Subscription } from '@lemonsqueezy/lemonsqueezy.js';
+const { getSession } = Astro.locals;
+let userData = await getSession();
+if (!userData) {
+	return Astro.redirect(`/signin?redirect=${encodeURIComponent('/dashboard/settings')}`, 302);
+}
+const paymentInfo = userData.paymentId && (await getSubscription(userData.paymentId));
+let pro: Subscription;
+if (
+	paymentInfo &&
+	paymentInfo.data.data.attributes.product_id === +import.meta.env.LEMONSQUEEZY_PRO_ID
+) {
+	pro = paymentInfo.data;
+}
+---
+
+<DashboardLayout class="w-main m-auto">
+	<h1 class="text-3xl font-700 font-display w-min">Settings</h1>
+	<h2 class="text-2xl font-600 font-display w-min">Plans</h2>
+	<Billing {pro} {userData} client:idle />
+</DashboardLayout>

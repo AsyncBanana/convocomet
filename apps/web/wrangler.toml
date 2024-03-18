@@ -1,0 +1,10 @@
+name = "convocomet"
+main = "dist/main.js"
+compatibility_date = "3/16/2024"
+
+workers_dev = false
+
+analytics_engine_datasets = [
+    { binding = "VIEW_ANALYTICS", dataset = "CONVOCOMET_VIEW_ANALYTICS" },
+    { binding = "COMMENT_ANALYTICS", dataset = "CONVOCOMET_COMMENT_ANALYTICS" },
+]

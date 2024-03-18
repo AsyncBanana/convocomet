@@ -1,0 +1,30 @@
+---
+import DashboardLayout from '../../layouts/DashboardLayout.astro';
+import { SiteTable, type SiteTableSelect } from '../../schemas/db/site';
+import Dashboard from '../../components/dashboard/Index.svelte';
+import banners from '../../modules/banners';
+import { eq } from 'drizzle-orm';
+import { aggregateEvents, getEventCount } from '../../modules/analytics';
+const { db, getSession } = Astro.locals;
+let userData = await getSession();
+if (!userData) {
+	return Astro.redirect('/signin', 302);
+}
+let results: SiteTableSelect[];
+try {
+	results = await db.select().from(SiteTable).where(eq(SiteTable.owner, userData.id)).all();
+} catch (err) {
+	banners.add({ content: `Error loading sites: ${err}`, type: 'error' });
+}
+let views;
+let comments;
+if (results.length > 0) {
+	const ids = results.map((result) => result.id);
+	views = aggregateEvents(await getEventCount('view', ids));
+	comments = aggregateEvents(await getEventCount('comment', ids));
+}
+---
+
+<DashboardLayout>
+	<Dashboard sites={results} {views} {comments} client:load />
+</DashboardLayout>

@@ -1,0 +1,53 @@
+---
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>ConvoComet Widget Testing</title>
+	</head>
+	<body>
+		<h1>ConvoComet Widget Testing</h1>
+		<form action="/widgets">
+			<label>
+				<span>Site Id</span>
+				<input type="number" required name="siteId" />
+			</label>
+			<label>
+				<span>Page Id</span>
+				<input type="text" required name="pageId" />
+			</label>
+			<label>
+				<span>Widgets to load</span>
+				<select name="widget">
+					<option value="all" selected>All</option>
+					<option value="html">HTML</option>
+					<option value="svelte">Svelte</option>
+					<option value="vue">Vue</option>
+					<option value="react">React</option>
+					<option value="solid">Solid</option>
+				</select>
+			</label>
+			<label>
+				<span>Host</span>
+				<select name="host">
+					<option value="remote" selected>convocomet.dev (remote)</option>
+					<option value="local">localhost:4321 (local)</option>
+				</select>
+			</label>
+			<label>
+				<span>Theme</span>
+				<select name="theme">
+					<option value="light" selected>Light</option>
+					<option value="dark">Dark</option>
+					<option value="auto">Auto</option>
+				</select>
+			</label>
+			<button type="submit">Load Widgets</button>
+		</form>
+	</body>
+</html>

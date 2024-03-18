@@ -1,0 +1,21 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import BannerManager from '../components/BannerManager.svelte';
+const { getSession } = Astro.locals;
+let userData = await getSession();
+const { class: className } = Astro.props;
+interface Props {
+	class?: string;
+}
+---
+
+<BaseLayout>
+	<div class={`${className ? `${className} ` : ''}m-6`}>
+		<slot />
+	</div>
+	<div
+		class="fixed h-screen w-screen top-0 left-0 flex flex-col md:gap-3 justify-end md:p-6 pointer-events-none"
+	>
+		<BannerManager client:only />
+	</div>
+</BaseLayout>

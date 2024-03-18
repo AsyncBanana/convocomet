@@ -1,0 +1,55 @@
+---
+title: HTTP API
+description: Reference documentation on the ConvoComet HTTP API
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+This document contains documentation on ConvoComet's HTTP API.
+
+<Aside type="caution">
+	This API is still in flux and it is not recommended that you use it directly. There is also no
+	current way to access protected routes without using the JWT cookie.
+</Aside>
+
+# Comments
+
+## Post a comment
+
+| Route                             | Verb | Protected | Request Body                                                                                         |
+| --------------------------------- | ---- | --------- | ---------------------------------------------------------------------------------------------------- |
+| `/api/comments/[siteId]/[pageId]` | POST | ❌        | [Schema](https://github.com/AsyncBanana/median/blob/main/apps/web/src/schemas/validation/comment.ts) |
+
+To post a comment, send a POST request to `/api/comments/[siteId]/[pageId]` with a request body matching the above schema, encoded as either a URLEncoded form result or JSON. If you are signed in when doing this, the comment will automatically be attributed to you. Otherwise, it will be considered anonymous and will use the `author` field of the passed JSON.
+
+## Get comments
+
+| Route                             | Verb | Protected | Request Body |
+| --------------------------------- | ---- | --------- | ------------ |
+| `/api/comments/[siteId]/[pageId]` | GET  | ❌        | None         |
+
+To get a list of comments for a given site and page, send a GET request to `/api/comments/[siteId]/[pageId]`. As it is a GET request, there is no request body, and it does not matter whether the request is signed in.
+
+## Delete a comment
+
+| Route                      | Verb   | Protected | Request Body |
+| -------------------------- | ------ | --------- | ------------ |
+| `/api/comment/[commentId]` | DELETE | ✅        | None         |
+
+To delete a published comment, send a GET request to `/api/comments/[siteId]/[pageId]`. There is no request body required, but the request must be signed in as the owner of the instance.
+
+## Approve a comment
+
+| Route                            | Verb | Protected | Request Body                                         |
+| -------------------------------- | ---- | --------- | ---------------------------------------------------- |
+| `/api/comments/[siteId]/approve` | GET  | ✅        | None (commentId passed as `comment` in query params) |
+
+To approve a comment in the moderation queue, send a GET request to `/api/comments/[siteId]/approve?comment=[commentId]`. `[commentId]` should refer to the id of a comment currently in the moderation queue. This route is not necessary for instances with moderation disabled. Note that you will need to be signed in as the owner of the instance.
+
+## Deny a comment
+
+| Route                         | Verb | Protected | Request Body                                         |
+| ----------------------------- | ---- | --------- | ---------------------------------------------------- |
+| `/api/comments/[siteId]/deny` | GET  | ✅        | None (commentId passed as `comment` in query params) |
+
+To deny a comment in the moderation queue, send a GET request to `/api/comments/[siteId]/deny?comment=[commentId]`. The request signature should be the same as comment approval, except for the different route. `[commentId]` should refer to the id of a comment currently in the moderation queue. This route is not necessary for instances with moderation disabled. Note that you will need to be signed in as the owner of the instance.

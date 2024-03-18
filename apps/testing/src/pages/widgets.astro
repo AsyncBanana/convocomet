@@ -1,0 +1,96 @@
+---
+import WidgetSvelte from '@convocomet/svelte';
+import WidgetVue from '@convocomet/vue';
+import WidgetReact from '@convocomet/react';
+import WidgetSolid from '@convocomet/solid';
+const pageId = Astro.url.searchParams.get('pageId');
+const siteId = Astro.url.searchParams.get('siteId');
+const widget = Astro.url.searchParams.get('widget') || 'all';
+const host =
+	Astro.url.searchParams.get('host') === 'remote'
+		? 'https://convocomet.dev'
+		: 'http://localhost:4321';
+const theme = Astro.url.searchParams.get('theme') || 'light';
+if (!pageId || !siteId) return new Response('Missing parameters', { status: 400 });
+---
+
+<a href="/">Homepage</a>
+{
+	(widget === 'html' || widget === 'all') && (
+		<>
+			<h1>Web</h1>
+			<div
+				id="convocomet-widget"
+				data-page={pageId}
+				data-site={siteId}
+				data-host={`${host}/widget`}
+				data-theme={theme}
+			/>
+			<script src="https://convocomet.dev/widget.js" async />
+		</>
+	)
+}
+{
+	(widget === 'vue' || widget === 'all') && (
+		<>
+			<h1>Vue</h1>
+			<WidgetVue host={`${host}/widget`} site={siteId} page={pageId} {theme} client:only="vue" />
+		</>
+	)
+}
+{
+	(widget === 'svelte' || widget === 'all') && (
+		<>
+			<h1>Svelte</h1>
+			<WidgetSvelte
+				host={`${host}/widget`}
+				site={siteId}
+				page={pageId}
+				{theme}
+				client:only="svelte"
+			/>
+		</>
+	)
+}
+{
+	(widget === 'react' || widget === 'all') && (
+		<>
+			<h1>React</h1>
+			<WidgetReact
+				host={`${host}/widget`}
+				site={siteId}
+				page={pageId}
+				{theme}
+				client:only="react"
+			/>
+		</>
+	)
+}
+{
+	(widget === 'react' || widget === 'all') && (
+		<>
+			<h1>Solid</h1>
+			<WidgetReact
+				host={`${host}/widget`}
+				site={siteId}
+				page={pageId}
+				{theme}
+				client:only="react"
+			/>
+		</>
+	)
+}
+{
+	(widget === 'solid' || widget === 'all') && (
+		<>
+			<h1>Solid</h1>
+			<WidgetSolid
+				host={`${host}/widget`}
+				site={siteId}
+				page={pageId}
+				{theme}
+				client:only="solid"
+			/>
+		</>
+	)
+}

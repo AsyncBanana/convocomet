@@ -1,0 +1,283 @@
+:root {
+	--p-scheme: light;
+
+	/* Colors */
+	--p-foreground: #6e6e6e;
+	--p-background: #f4f4f4;
+
+	/* Tokens */
+	--p-cmt: #0000ff;
+	--p-str: #a31515;
+	--p-literal: #098658;
+	--p-kwd: #0000ff;
+	--p-fct: #0000ff;
+	--p-dlt: #a31515;
+	--p-class: #0000ff;
+	--p-builtin: #0000ff;
+	--p-prop: #e50000;
+	--p-namespace: #4f4f4f;
+	--p-punctuation: #ababab;
+	--p-decorator: var(--p-class);
+	--p-operator: var(--p-punctuation);
+	--p-nmb: var(--p-literal);
+	--p-bool: var(--p-literal);
+	--p-var: var(--p-literal);
+	--p-constant: var(--p-literal);
+	--p-symbol: var(--p-literal);
+	--p-interpolation: var(--p-literal);
+	--p-selector: var(--p-kwd);
+	--p-kwd-control: var(--p-kwd);
+	--p-regex: var(--p-str);
+	--p-json-prop: var(--p-prop);
+	--p-inline-background: var(--p-background);
+
+	/* Token Styles */
+	--p-cmt-style: italic;
+	--p-url-decoration: underline;
+
+	/* Extension */
+	--p-line-nmb: #a5a5a5;
+	--p-line-nmb-gtr: #333333;
+	--p-line-highlight-background: #eeeeee;
+	--p-selection-background: #dddddd;
+	--p-marker-color: var(--p-foreground);
+	--p-marker-opacity: 0.4;
+	--p-marker-font-size: 0.8em;
+
+	/* Font */
+	--p-font-size: 1em;
+	--p-line-height: 1.5em;
+	--p-font-family: monospace;
+	--p-inline-font-size: var(--p-font-size);
+	--p-block-font-size: var(--p-font-size);
+
+	/* Sizing */
+	--p-tab-size: 2;
+
+	--p-block-padding-x: 1em;
+	--p-block-padding-y: 1em;
+	--p-block-margin-x: 0;
+	--p-block-margin-y: 0.5em;
+	--p-block-radius: 0.3em;
+	--p-inline-padding-x: 0.3em;
+	--p-inline-padding-y: 0.1em;
+	--p-inline-radius: 0.3em;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--p-scheme: dark;
+		--p-foreground: #d4d4d4;
+		--p-background: #1e1e1e;
+		--p-cmt: #6a9955;
+		--p-str: #ce9178;
+		--p-literal: #9cdcfe;
+		--p-kwd: #569cd6;
+		--p-bool: #569cd6;
+		--p-nmb: #b5cea8;
+		--p-fct: #dcdcaa;
+		--p-dlt: #f44747;
+		--p-class: #d7ba7d;
+		--p-builtin: #4ec9b0;
+		--p-prop: #9cdcfe;
+		--p-namespace: #4ec9b0;
+		--p-punctuation: #858585;
+		--p-decorator: #bd8f8f;
+		--p-regex: #646695;
+		--p-json-prop: #6b8b9e;
+		--p-line-nmb: #888888;
+		--p-line-nmb-gutter: #eeeeee;
+		--p-line-highlight-background: #444444;
+		--p-selection-background: #444444;
+	}
+}
+
+div[class*='language-'],
+pre[class*='language-'],
+code[class*='language-'] {
+	font-size: var(--p-font-size);
+	font-family: var(--p-font-family);
+	direction: ltr;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	line-height: var(--p-line-height);
+	-moz-tab-size: var(--p-tab-size);
+	-o-tab-size: var(--p-tab-size);
+	tab-size: var(--p-tab-size);
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	color: var(--p-foreground) !important;
+}
+
+/* Code blocks */
+div[class*='language-'],
+pre[class*='language-'] {
+	font-size: var(--p-block-font-size);
+	padding: var(--p-block-padding-y) var(--p-block-padding-x);
+	margin: var(--p-block-margin-y) var(--p-block-margin-x);
+	border-radius: var(--p-block-radius);
+	overflow: auto;
+	background: var(--p-background);
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+	font-size: var(--p-inline-font-size);
+	padding: var(--p-inline-padding-y) var(--p-inline-padding-x);
+	border-radius: var(--p-inline-radius);
+	background: var(--p-inline-background);
+}
+
+/* Selection */
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+	background: var(--p-selection-background);
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+	background: var(--p-selection-background);
+}
+
+/* Tokens */
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: var(--p-cmt);
+	font-style: var(--p-cmt-style);
+}
+
+.token.namespace {
+	color: var(--p-namespace);
+}
+
+.token.interpolation {
+	color: var(--p-interpolation);
+}
+
+.token.string {
+	color: var(--p-str);
+}
+
+.token.punctuation {
+	color: var(--p-punctuation);
+}
+
+.token.operator {
+	color: var(--p-operator);
+}
+
+.token.keyword.module,
+.token.keyword.control-flow {
+	color: var(--p-kwd-control);
+}
+
+.token.url,
+.token.symbol,
+.token.inserted {
+	color: var(--p-symbol);
+}
+
+.token.constant {
+	color: var(--p-constant);
+}
+
+.token.string.url {
+	text-decoration: var(--p-url-decoration);
+}
+
+.token.boolean,
+.language-json .token.boolean {
+	color: var(--p-bool);
+}
+
+.token.number,
+.language-json .token.number {
+	color: var(--p-nmb);
+}
+
+.token.var {
+	color: var(--p-var);
+}
+
+.token.keyword {
+	color: var(--p-kwd);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.selector {
+	color: var(--p-selector);
+}
+
+.token.function {
+	color: var(--p-fct);
+}
+
+.token.deleted {
+	color: var(--p-dlt);
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+
+.token.italic {
+	font-style: italic;
+}
+
+.token.class-name {
+	color: var(--p-class);
+}
+
+.token.tag,
+.token.builtin {
+	color: var(--p-builtin);
+}
+
+.token.attr-name,
+.token.property,
+.token.entity {
+	color: var(--p-prop);
+}
+
+.language-json .token.property {
+	color: var(--p-json-prop);
+}
+
+.token.regex {
+	color: var(--p-regex);
+}
+
+.token.decorator,
+.token.annotation {
+	color: var(--p-decorator);
+}
+
+/* overrides color-values for the Line Numbers plugin
+   * http://prismjs.com/plugins/line-nmbs/
+   */
+.line-nmbs .line-nmbs-rows {
+	border-right-color: var(--p-line-nmb);
+}
+
+.line-nmbs-rows > span:before {
+	color: var(--p-line-nmb-gtr);
+}
+
+/* overrides color-values for the Line Highlight plugin
+	* http://prismjs.com/plugins/line-highlight/
+	*/
+.line-highlight {
+	background: var(--p-line-highlight-background);
+}
