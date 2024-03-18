@@ -1,6 +1,6 @@
 {
 	"name": "@convocomet/react",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "ConvoComet React/Preact Widget",
 	"repository": {
 		"type": "git",
@@ -27,5 +27,8 @@
 	},
 	"type": "module",
 	"types": "dist/index.d.ts",
-	"packageManager": "pnpm@8.15.4"
+	"packageManager": "pnpm@8.15.4",
+	"files": [
+		"dist"
+	]
 }
