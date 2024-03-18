@@ -1,7 +1,7 @@
 {
 	"name": "@convocomet/sdk",
 	"version": "1.0.1",
-	"description": "",
+	"description": "The ConvoComet JavaScript SDK",
 	"main": "index.js",
 	"repository": {
 		"type": "git",
