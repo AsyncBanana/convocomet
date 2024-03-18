@@ -1,6 +1,6 @@
 {
 	"name": "@convocomet/vue",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "ConvoComet Vue Widget",
 	"repository": {
 		"type": "git",
@@ -28,5 +28,8 @@
 	"main": "dist/index.js",
 	"types": "dist/index.vue.d.ts",
 	"type": "module",
-	"packageManager": "pnpm@8.15.4"
+	"packageManager": "pnpm@8.15.4",
+	"files": [
+		"dist"
+	]
 }

@@ -1,6 +1,6 @@
 {
 	"name": "@convocomet/solid",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "ConvoComet Solid Widget",
 	"repository": {
 		"type": "git",
@@ -28,5 +28,8 @@
 		"solid-js": "1.x"
 	},
 	"type": "module",
-	"packageManager": "pnpm@8.15.4"
+	"packageManager": "pnpm@8.15.4",
+	"files": [
+		"dist"
+	]
 }
