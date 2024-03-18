@@ -2,6 +2,10 @@
 	"name": "@convocomet/web",
 	"version": "1.0.0",
 	"description": "ConvoComet HTML Widget",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/AsyncBanana/convocomet"
+	},
 	"keywords": [
 		"commenting"
 	],

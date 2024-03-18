@@ -2,6 +2,10 @@
 	"name": "@convocomet/solid",
 	"version": "1.0.0",
 	"description": "ConvoComet Solid Widget",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/AsyncBanana/convocomet"
+	},
 	"keywords": [
 		"commenting",
 		"solid"

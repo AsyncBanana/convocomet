@@ -3,6 +3,10 @@
 	"version": "1.0.0",
 	"description": "",
 	"main": "index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/AsyncBanana/convocomet"
+	},
 	"scripts": {
 		"build": "tsc",
 		"dev": "tsc --watch"

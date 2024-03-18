@@ -2,6 +2,10 @@
 	"name": "@convocomet/svelte",
 	"version": "1.0.0",
 	"description": "ConvoComet Svelte Widget",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/AsyncBanana/convocomet"
+	},
 	"keywords": [
 		"commenting",
 		"svelte"

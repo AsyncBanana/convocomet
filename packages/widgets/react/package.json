@@ -2,6 +2,10 @@
 	"name": "@convocomet/react",
 	"version": "1.0.0",
 	"description": "ConvoComet React/Preact Widget",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/AsyncBanana/convocomet"
+	},
 	"keywords": [
 		"commenting",
 		"react",
