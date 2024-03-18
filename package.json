@@ -12,7 +12,7 @@
 		"format": "prettier --write \"**/*.{ts,tsx,md,svelte}\"",
 		"update:pnpm": "node scripts/updatepnpm.js && prettier --write \"**/package.json\"",
 		"build": "pnpm -r build",
-		"publish": "pnpm -r build && pnpm -r publish"
+		"publish": "pnpm -r build && pnpm -r publish --access public"
 	},
 	"devDependencies": {
 		"biome": "^0.3.3",
