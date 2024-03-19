@@ -83,7 +83,6 @@ export const GET: APIRoute = async (ctx) => {
 			credentials: import.meta.env.GOOGLE_OAUTH_SECRET
 		});
 		const scopes = token.scope.split(' ');
-		console.log(scopes);
 		if (
 			!(
 				scopes.includes('https://www.googleapis.com/auth/userinfo.email') &&

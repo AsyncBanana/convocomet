@@ -77,12 +77,10 @@ export const GET: APIRoute = async ({ params, locals, url }) => {
 		continuation = order === 'top' ? results.at(-1).upvotes : results.at(-1).id;
 	}
 	if ('VIEW_ANALYTICS' in locals.runtime.env) {
-		console.log(
-			locals.runtime.env.VIEW_ANALYTICS.writeDataPoint({
-				blobs: [page, locals.runtime.cf.country as string],
-				indexes: [id]
-			})
-		);
+		locals.runtime.env.VIEW_ANALYTICS.writeDataPoint({
+			blobs: [page, locals.runtime.cf.country as string],
+			indexes: [id]
+		});
 	}
 	return new Response(
 		JSON.stringify({
@@ -168,13 +166,6 @@ export const POST: APIRoute = async (ctx) => {
 		css: false,
 		stripIgnoreTagBody: ['script', 'style']
 	});
-	// Analytics
-	if ('COMMENT_ANALYTICS' in locals.runtime.env) {
-		locals.runtime.env.COMMENT_ANALYTICS.writeDataPoint({
-			blobs: [page, locals.runtime.cf.country as string],
-			indexes: [id]
-		});
-	}
 	const fullComment: FullComment = {
 		...body,
 		created: new Date(),
@@ -213,6 +204,13 @@ export const POST: APIRoute = async (ctx) => {
 				status: 400
 			});
 		}
+	}
+	// Analytics
+	if ('COMMENT_ANALYTICS' in locals.runtime.env) {
+		locals.runtime.env.COMMENT_ANALYTICS.writeDataPoint({
+			blobs: [page, locals.runtime.cf.country as string],
+			indexes: [id]
+		});
 	}
 	try {
 		if (siteConfig.manualModeration) {

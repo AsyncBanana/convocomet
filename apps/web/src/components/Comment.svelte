@@ -104,7 +104,6 @@
 					{session}
 					on:comment={(e) => {
 						replies.unshift(e.detail);
-						console.log(replies);
 						replies = replies;
 					}}
 				/>

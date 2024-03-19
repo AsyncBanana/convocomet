@@ -16,7 +16,6 @@ import { generateRandomString, alphabet } from 'oslo/crypto';
 import verifyEmailTemplate from '../../../../templates/html/verifyEmail.html?raw';
 export const ALL: APIRoute = async (ctx) => {
 	const redirectURI = ctx.url.searchParams.get('redirect');
-	console.log(redirectURI);
 	if (redirectURI) {
 		ctx.cookies.set('authRedirectURI', redirectURI, {
 			secure: true,

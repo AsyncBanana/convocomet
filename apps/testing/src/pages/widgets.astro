@@ -26,7 +26,7 @@ if (!pageId || !siteId) return new Response('Missing parameters', { status: 400 
 				data-host={`${host}/widget`}
 				data-theme={theme}
 			/>
-			<script src="https://convocomet.dev/widget.js" async />
+			<script src={`${host}/widget.js`} async />
 		</>
 	)
 }
