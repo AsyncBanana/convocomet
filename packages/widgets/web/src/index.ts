@@ -1,7 +1,7 @@
 const init = () => {
 	const widget = document.getElementById('convocomet-widget');
 	const site = widget.getAttribute('data-site');
-	const page = widget.getAttribute('data-page');
+	const page = widget.getAttribute('data-page') || window.location.pathname;
 	const host = widget.getAttribute('data-host') || 'https://convocomet.dev/widget';
 	const theme = (widget.getAttribute('data-theme') || 'light') as 'light' | 'dark' | 'auto';
 	if (!site || !page) {
