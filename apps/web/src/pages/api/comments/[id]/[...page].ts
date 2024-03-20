@@ -194,7 +194,7 @@ export const POST: APIRoute = async (ctx) => {
 				user_ip: request.headers.get('x-forwarded-for') ?? '127.0.0.1',
 				blog_charset: 'UTF-8',
 				comment_author: fullComment.author,
-				comment_author_email: user.email,
+				comment_author_email: user?.email,
 				comment_content: fullComment.text,
 				comment_date_gmt: new Date(fullComment.created).toISOString()
 			})
