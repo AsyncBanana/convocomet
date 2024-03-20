@@ -16,9 +16,9 @@ This document contains documentation on ConvoComet's HTTP API.
 
 ## Post a comment
 
-| Route                             | Verb | Protected | Request Body                                                                                         |
-| --------------------------------- | ---- | --------- | ---------------------------------------------------------------------------------------------------- |
-| `/api/comments/[siteId]/[pageId]` | POST | ❌        | [Schema](https://github.com/AsyncBanana/median/blob/main/apps/web/src/schemas/validation/comment.ts) |
+| Route                             | Verb | Protected | Request Body                                                                                             |
+| --------------------------------- | ---- | --------- | -------------------------------------------------------------------------------------------------------- |
+| `/api/comments/[siteId]/[pageId]` | POST | ❌        | [Schema](https://github.com/AsyncBanana/convocomet/blob/main/apps/web/src/schemas/validation/comment.ts) |
 
 To post a comment, send a POST request to `/api/comments/[siteId]/[pageId]` with a request body matching the above schema, encoded as either a URLEncoded form result or JSON. If you are signed in when doing this, the comment will automatically be attributed to you. Otherwise, it will be considered anonymous and will use the `author` field of the passed JSON.
 
