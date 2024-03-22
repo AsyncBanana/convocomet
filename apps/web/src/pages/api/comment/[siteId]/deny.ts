@@ -56,5 +56,5 @@ export const GET: APIRoute = async ({ request, params, locals: { db, getSession 
 		console.log(err);
 		return new Response('Error rejecting comment', { status: 500 });
 	}
-	return new Response('Comments denied', { status: 200 });
+	return new Response('Comments rejected', { status: 200 });
 };
