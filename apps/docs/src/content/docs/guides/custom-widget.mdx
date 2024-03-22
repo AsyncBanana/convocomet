@@ -11,7 +11,7 @@ The recommended way to use ConvoComet is through the [official integrations](/gu
 npm install @convocomet/sdk
 ```
 
-`@convocomet/sdk` exports only three functions. `loadComments`, `postComment`, and `upvote`. These all do exactly what it sounds like :{"("}.
+`@convocomet/sdk` exports only three functions. `loadComments`, `postComment`, and `upvote`. These all do exactly what they sound like.
 
 ## loadComments
 
@@ -20,11 +20,14 @@ npm install @convocomet/sdk
 Here is an example of using `loadComments`
 
 ```js
-import {loadComments} from "@convocomet/sdk"
-const {comments, continuation} = await loadComments({
-    id: import.meta.env.CONVOCOMET_SITE_ID,
-    page: 'page-slug'
-}, 'newest')
+import { loadComments } from '@convocomet/sdk';
+const { comments, continuation } = await loadComments(
+	{
+		id: import.meta.env.CONVOCOMET_SITE_ID,
+		page: 'page-slug'
+	},
+	'newest'
+);
 ```
 
 Note that `continuation` will only be returned when there are more comments. There is currently no way to configure the number of comments loaded (it is set to 20).
@@ -34,15 +37,18 @@ Note that `continuation` will only be returned when there are more comments. The
 `postComment` allows you to submit comments. To use it, pass two parameters: the comment data and configuration object. The comment data should contain `text`, a boolean `notifications` for whether the user has enabled notifications, `author`, which should only be specified for anonymous users (signed in users will use the session cookie), and `sourceId`, which is the id of the comment replied to if the comment is a reply.
 
 ```js
-import {postComment} from "@convocomet/sdk"
-const newComment = await postComment({
-    text: "Testing testing 1 2",
-    notifications: false, // cannot be true without signed in user
-    author: "Tester"
-},{
-    id: import.meta.env.CONVOCOMET_SITE_ID,
-    page: 'page-slug'
-})
+import { postComment } from '@convocomet/sdk';
+const newComment = await postComment(
+	{
+		text: 'Testing testing 1 2',
+		notifications: false, // cannot be true without signed in user
+		author: 'Tester'
+	},
+	{
+		id: import.meta.env.CONVOCOMET_SITE_ID,
+		page: 'page-slug'
+	}
+);
 ```
 
 ## upvote
@@ -51,7 +57,7 @@ const newComment = await postComment({
 
 ```js
 await upvote(COMMENT_ID, {
-    id: import.meta.env.CONVOCOMET_SITE_ID,
-    page: 'page-slug'
-})
+	id: import.meta.env.CONVOCOMET_SITE_ID,
+	page: 'page-slug'
+});
 ```
