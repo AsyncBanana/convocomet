@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 
 const { parsed: env } = config({
-	path: process.env.NODE_ENV === 'production' ? './.dev.vars' : './.env.development'
+	path: process.env.NODE_ENV === 'production' ? './.env.production' : './.env.development'
 });
 
 /** @type { import("drizzle-kit").Config } */

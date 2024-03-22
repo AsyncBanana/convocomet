@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { indexBlockList } from '../modules/indexBlockList';
+console.log(import.meta.env.DATABASE_URL);
 export const GET: APIRoute = () => {
 	return new Response(
 		`

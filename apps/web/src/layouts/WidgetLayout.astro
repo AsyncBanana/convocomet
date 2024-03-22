@@ -11,6 +11,7 @@ interface Props {
 	outerClass={`${Astro.props.theme === 'light' ? ' lightOverride' : ''}${
 		Astro.props.theme === 'dark' ? ' darkOverride' : ''
 	}`}
+	trackEvent={false}
 >
 	<slot />
 </BaseLayout>
