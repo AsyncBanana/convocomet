@@ -51,3 +51,7 @@ interface ImportMeta {
 }
 
 declare namespace App {}
+declare module '*.mjml' {
+	const template: string;
+	export default template;
+}

@@ -5,6 +5,8 @@ import unocss from 'unocss/astro';
 import { visualizer } from 'rollup-plugin-visualizer';
 import sitemap from '@astrojs/sitemap';
 import { matchBlock } from './src/modules/indexBlockList';
+import mjml from 'rollup-plugin-mjml-inline';
+
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
@@ -30,7 +32,7 @@ export default defineConfig({
 	trailingSlash: 'never',
 	site: import.meta.env.PROD ? 'https://convocomet.dev' : 'http://localhost:4321',
 	vite: {
-		plugins: [visualizer()],
+		plugins: [visualizer(), mjml()],
 		resolve: {
 			alias: [
 				{

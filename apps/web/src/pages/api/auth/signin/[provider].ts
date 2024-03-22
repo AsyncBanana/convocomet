@@ -13,7 +13,7 @@ import {
 } from '../../../../schemas/db/auth';
 import { and, eq } from 'drizzle-orm';
 import { generateRandomString, alphabet } from 'oslo/crypto';
-import verifyEmailTemplate from '../../../../templates/html/verifyEmail.html?raw';
+import verifyEmailTemplate from '../../../../templates/verifyEmail.mjml';
 export const ALL: APIRoute = async (ctx) => {
 	const redirectURI = ctx.url.searchParams.get('redirect');
 	if (redirectURI) {

@@ -1,7 +1,7 @@
 import { type CommentTableSelect, CommentTable } from '../schemas/db/comment';
 import { eq } from 'drizzle-orm';
-import replyNotificationTemplate from '../templates/html/replyNotification.html?raw';
-import moderationNotificationTemplate from '../templates/html/commentModeration.html?raw';
+import replyNotificationTemplate from '../templates/replyNotification.mjml';
+import moderationNotificationTemplate from '../templates/commentModeration.mjml';
 import { sendEmail } from './email';
 import type { SiteTableSelect } from '../schemas/db/site';
 import { UserTable as UserTable } from '../schemas/db/auth';

@@ -6,7 +6,7 @@ import { sendEmail } from '../../../../modules/email';
 import { eq } from 'drizzle-orm';
 import { Action, UserTable, VerificationTokenTable } from '../../../../schemas/db/auth';
 import { alphabet, generateRandomString } from 'oslo/crypto';
-import verifyEmailTemplate from '../../../../templates/html/verifyEmail.html?raw';
+import verifyEmailTemplate from '../../../../templates/verifyEmail.mjml';
 export const ALL: APIRoute = async (ctx) => {
 	if (ctx.request.method !== 'POST' && ctx.request.method !== 'GET')
 		return new Response('Invalid request type', { status: 400 });
