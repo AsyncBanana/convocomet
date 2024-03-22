@@ -44,7 +44,7 @@
 				icon="i-ic:round-close"
 				type="tertiary"
 				on:click={() => {
-					dispatch('deny');
+					dispatch('reject');
 				}}
 			/>
 		{:else}

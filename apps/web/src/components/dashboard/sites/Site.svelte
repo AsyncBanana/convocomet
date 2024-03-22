@@ -153,12 +153,12 @@
 								banners.add({ type: 'error', content: 'Error approving comment' });
 							}
 						}}
-						on:deny={async () => {
+						on:reject={async () => {
 							Comments.splice(Comments.findIndex((c) => (c.id = CommentData.id)) - 1, 1);
 							Comments = Comments;
 							try {
 								await fetch(
-									`/api/comment/${Site.id}/deny?comment=${encodeURIComponent(CommentData.id)}`
+									`/api/comment/${Site.id}/reject?comment=${encodeURIComponent(CommentData.id)}`
 								);
 							} catch {
 								banners.add({ type: 'error', content: 'Error rejecting comment' });

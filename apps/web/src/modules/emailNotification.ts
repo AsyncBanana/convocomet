@@ -75,7 +75,7 @@ export async function moderationNotification(
 					)
 					.replaceAll(
 						'{{rejectUrl}}',
-						new URL(`/api/comment/${siteConfig.id}/deny?comment=${comment.id}`, site).toString()
+						new URL(`/api/comment/${siteConfig.id}/reject?comment=${comment.id}`, site).toString()
 					)
 			}
 		]

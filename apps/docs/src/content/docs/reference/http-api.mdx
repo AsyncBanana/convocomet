@@ -46,10 +46,10 @@ To delete a published comment, send a GET request to `/api/comments/[siteId]/[pa
 
 To approve a comment in the moderation queue, send a GET request to `/api/comments/[siteId]/approve?comment=[commentId]`. `[commentId]` should refer to the id of a comment currently in the moderation queue. This route is not necessary for instances with moderation disabled. Note that you will need to be signed in as the owner of the instance.
 
-## Deny a comment
+## Reject a comment
 
-| Route                         | Verb | Protected | Request Body                                         |
-| ----------------------------- | ---- | --------- | ---------------------------------------------------- |
-| `/api/comments/[siteId]/deny` | GET  | ✅        | None (commentId passed as `comment` in query params) |
+| Route                           | Verb | Protected | Request Body                                         |
+| ------------------------------- | ---- | --------- | ---------------------------------------------------- |
+| `/api/comments/[siteId]/reject` | GET  | ✅        | None (commentId passed as `comment` in query params) |
 
-To deny a comment in the moderation queue, send a GET request to `/api/comments/[siteId]/deny?comment=[commentId]`. The request signature should be the same as comment approval, except for the different route. `[commentId]` should refer to the id of a comment currently in the moderation queue. This route is not necessary for instances with moderation disabled. Note that you will need to be signed in as the owner of the instance.
+To reject a comment in the moderation queue, send a GET request to `/api/comments/[siteId]/reject?comment=[commentId]`. The request signature should be the same as comment approval, except for the different route. `[commentId]` should refer to the id of a comment currently in the moderation queue. This route is not necessary for instances with moderation disabled. Note that you will need to be signed in as the owner of the instance.
