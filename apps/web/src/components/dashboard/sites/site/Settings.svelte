@@ -2,6 +2,7 @@
 	import banners from '../../../../modules/banners';
 	import type { SiteTableSelect } from '../../../../schemas/db/site';
 	import Button from '../../../Button.svelte';
+	import FileUpload from '../../../FileUpload.svelte';
 	import Modal from '../../../Modal.svelte';
 	import SiteConfigMenu from '../../../SiteConfigMenu.svelte';
 	export let Site: SiteTableSelect;
@@ -23,6 +24,8 @@
 			banners.add({ content: 'Configuration successfully updated!', type: 'info' });
 		}
 	}
+	let uploadForm: HTMLFormElement;
+	let uploading = false;
 </script>
 
 <SiteConfigMenu mode="configure" site={Site} on:submit={updateConfig}>
@@ -34,6 +37,39 @@
 		on:click={() => dialog.showModal()}>Delete Site</Button
 	>
 </SiteConfigMenu>
+<h2 class="text-xl font-bold mt-3">Import Comments from Disqus</h2>
+<form
+	action={`/api/sites/${Site.id}/import/disqus`}
+	bind:this={uploadForm}
+	method="post"
+	enctype="multipart/form-data"
+>
+	<FileUpload
+		name="import"
+		id="import"
+		accept={['.xml', '.xml.gz']}
+		loading={uploading}
+		on:change={async () => {
+			uploading = true;
+			const res = await fetch(`/api/sites/${Site.id}/import/disqus`, {
+				body: new FormData(uploadForm),
+				method: 'POST'
+			});
+			uploading = false;
+			if (!res.ok) {
+				banners.add({
+					content: 'Error importing comments',
+					type: 'error'
+				});
+				return;
+			}
+			banners.add({
+				content: 'Imported comments!',
+				type: 'success'
+			});
+		}}>Import from Disqus</FileUpload
+	>
+</form>
 <Modal bind:this={dialog}>
 	<svelte:fragment slot="header">Site Deletion</svelte:fragment>
 	<div class="mb-6 text-lg">

@@ -25,6 +25,10 @@ export default defineConfig({
 						{
 							label: 'Self Hosting',
 							link: '/guides/self-host'
+						},
+						{
+							label: 'Importing Disqus Comments',
+							link: '/guides/import-from-disqus'
 						}
 					]
 				},

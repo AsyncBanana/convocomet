@@ -16,7 +16,7 @@
 	class={className}
 	on:submit
 >
-	<h1 class="text-2xl font-display font-bold">New Site</h1>
+	{#if mode === 'create'}<h1 class="text-2xl font-display font-bold">New Site</h1>{/if}
 	<div class="md:mx-3">
 		<TextInput
 			placeholder="TheBestWebsite"

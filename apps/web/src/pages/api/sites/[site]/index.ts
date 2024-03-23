@@ -1,10 +1,10 @@
 import type { APIRoute } from 'astro';
 import { assert } from 'superstruct';
-import { SiteSchema } from '../../../schemas/validation/site';
-import { SiteTable } from '../../../schemas/db/site';
-import { parseRequestBody } from '../../../modules/utils';
+import { SiteSchema } from '../../../../schemas/validation/site';
+import { SiteTable } from '../../../../schemas/db/site';
+import { parseRequestBody } from '../../../../modules/utils';
 import { eq } from 'drizzle-orm';
-import { CommentTable, QueueTable } from '../../../schemas/db/comment';
+import { CommentTable, QueueTable } from '../../../../schemas/db/comment';
 export const POST: APIRoute = async ({ request, params, locals: { db, getSession } }) => {
 	const user = await getSession();
 	const siteId = +params.site;
