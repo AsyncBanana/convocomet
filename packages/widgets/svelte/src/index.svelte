@@ -21,15 +21,15 @@
 	});
 	const params = new URLSearchParams({
 		site,
-		page,
-		theme
+		page
 	});
+	if (theme) params.append('theme', theme);
 </script>
 
 <iframe
 	bind:this={iframe}
 	loading="lazy"
-	style="width:100%;border:0;"
+	style="width:100%;border:0;backgroundColor:transparent;"
 	title={'Comments by ConvoComet'}
 	allowtransparency={true}
 	src={`${host}?${params.toString()}`}

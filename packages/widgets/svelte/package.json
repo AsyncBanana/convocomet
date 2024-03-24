@@ -1,6 +1,6 @@
 {
 	"name": "@convocomet/svelte",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "ConvoComet Svelte Widget",
 	"repository": {
 		"type": "git",
